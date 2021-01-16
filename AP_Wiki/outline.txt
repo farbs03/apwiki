@@ -1,0 +1,31 @@
+Main Color:
+#3F83C0
+
+Url's:
+'/home' or '/':
+- Main information about Kurricula
+- Logo at the top
+- Nav bar at the top
+
+'/about':
+- Describes Kurricula in further detail
+- Says who made it and some stuff about them (me :))
+- Provide some contact like an email, ideally something like enrolld@gmail.com
+- Provide LinkedIn page
+- Also, link your personal blog page (work in progress)
+
+'/courses':
+- A list of courses
+- Ideally has a filter system so that people can find regular, AP, honors, etc.
+- Also, it could filter by subject
+- Each course would display their ratings, name, difficulty, and a short description (that would be cutoff unless the user clicks on the course)
+
+'/courses/X'
+- The X would be the name of the course
+- Find some way to make an adaptable page based on the course (Create a template course HTML file that each course can use)
+- The ratings by all the users, overall ratings, short description, title of course, etc. would all be displayed
+
+Overall
+- Learn how to work with bootstrap better, so you can actually use it instead of copying code from tutorials
+- Create a database for the users
+- Make a user authentication system, allow users to both register and login

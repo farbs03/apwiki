@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div class="container">
+		<h2 style="text-align: center">Explore Courses</h2>
+		<p style="text-align: center">Below is listed every AP course. Click on the name of the course to learn more about it, look at other's reviews, or leave a review on the course yourself. The courses are color coded by subject but feel free to filter by the subjects you want to see (if you don't feel like scrolling).</p>
+		<p style="text-align: center; font-weight: bold">All credit for the course descriptions goes to the College Board.</p>
+		<br>
+		<p><strong>Important note:</strong> The descriptions provided for Calculus AB and BC were the same, in addition to the ones for all of the Art Studio classes.</p>
+	</div>
+	<div class="dropdown container">
+	  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Filter by Subject&nbsp;&nbsp;<i class="fas fa-caret-down"></i>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	    {% for subject in subjects %}
+	    	<div class="form-check">
+		      <input type="checkbox" class="form-check-input" id="dropdownCheck" name="{{ subject }}">
+		      <label class="form-check-label" for="dropdownCheck">
+		        {{ subject.title() }}
+		      </label>
+		    </div>
+	    {% endfor %}
+	    <button type="submit" class="btn btn-primary" id="apply" onclick="filter(getCheckedSubjects())">Apply</button>
+	  </div>
+	</div>
+	<script type="text/javascript">
+		function getCheckedSubjects(){
+			var selected = [];
+			$('input[type=checkbox]').each(function () {
+			    var sThisVal = (this.checked ? $(this).attr('name') : "");
+			    if(sThisVal != ""){
+			    	selected.push(sThisVal);
+			    }
+			});
+			console.log(selected)
+			return selected;
+		}
+		function filter(subjects){
+			if(subjects.length == 0){
+				 $('.class-holder').each(function () {
+					$(this).css('display', 'block');
+				});
+			}
+			else{
+				$('.class-holder').each(function () {
+					if(subjects.indexOf($(this).attr('id')) == -1){
+						$(this).css('display', 'none');
+					}
+					else{
+						$(this).css('display', 'block');
+					}
+				});
+			}
+		}
+	</script>
+	<br>
+	<div class='all-classes'>
+		{% for class in classes %}
+			<div class="class-holder container" id="{{ class.subject }}">
+				<div class="top-part">
+					{% if class.subject == "math" %}
+						<p class="preview"><a href="{{  url_for('course', some_course=class.name) }}" class="math class-link"><h3><i class="fas fa-square-root-alt" style="color: #ff4d4d;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+					{% elif class.subject == "science" %}
+						<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="science class-link"><h3><i class="fas fa-flask" style="color: #ff8533;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+					{% elif class.subject == "english" %}
+						<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="english class-link"><h3><i class="fas fa-book-open" style="color: #ffd13e;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+					{% elif class.subject == "social studies" %}
+						{% if "economics" in class.name %}
+							<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="social-studies class-link"><h3><i class="fas fa-chart-line" style="color: #00b300;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+						{% elif class.name == "Psychology" %}
+							<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="social-studies class-link"><h3><i class="fas fa-brain" style="color: #00b300;"></i></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+						{% else %}
+							<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="social-studies class-link"><h3><i class="fas fa-landmark" style="color: #00b300;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+						{% endif %}
+					{% elif class.subject == "language" %}
+						<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="language class-link"><h3><i class="fas fa-globe" style="color: #5bb9ff;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+					{% elif class.subject == "arts" %}
+						{% if "Music" in class.name %}
+							<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="music class-link"><h3><i class="fas fa-music" style="color: #b54dff;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+						{% else %}
+							<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="art class-link"><h3><i class="fas fa-palette" style="color: #b54dff;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+						{% endif %}
+					{% elif class.subject == "computer science" %}
+						<p class="preview"><a href="{{ url_for('course', some_course=class.name) }}" class="computer-science class-link"><h3><i class="fas fa-laptop-code" style="color: #e600e6;"></i>&nbsp;&nbsp;{{ class.name }}</h3></a></p>
+					{% endif %}
+				</div>
+				<p style="font-weight: bold">Difficulty: {{ class.difficulty }} / 5</p>
+				<p style="font-weight: bold">Value: {{ class.value }} / 5</p>
+				<p class="class-description">{{ class.description }}</p>
+			</div>
+			<script type="text/javascript">
+				$('.class-description').each(function() {
+					var text = $(this).text();
+					text = text.substr(0, 220) + " ...";
+					$(this).text(text);
+				});
+			</script>
+		{% endfor %}
+	</div>
+	<br>
+{% endblock %}

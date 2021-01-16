@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div>
+		<img src="{{ url_for('static', filename='apwiki.png') }}" class="brand-img">
+		<div class="container">
+			<h3>What is AP Wiki?</h3>
+			<p>AP Wiki is a platform that allows high school students to leave reviews on the some of the AP courses they have taken. These reviews incorporate both the value and difficulty of the class. In addition, they can look at reviews for AP courses that they haven't taken to get an idea of what the course is like.</p>
+		</div>
+		<img src="{{ url_for('static', filename='library.jpg') }}" class="library">
+		<div class="container">
+			<h3>What about Rate My Professor?</h3>
+			<p>Rate My Professor is oriented towards college students, and doesn't accomodate any high school classes. This platform is dedicated to high school students, and more spefically AP students. Additionally, the focus of the reviews are more on the course itself and not so much as the teacher (even though teachers will inevitably be brought up, just not as frequently).</p>
+		</div>
+		<img src="{{ url_for('static', filename='laptop.jpg') }}" class="laptop">
+		<div class="container">
+			<h3>Suggestions/Issues?</h3>
+			<p>If you have any suggestions or issues regarding AP Wiki, please go over to the About/Contact page to find a way of contacting us. Be sure to be specific with your concerns, as we want this platform to be as helpful to students as possible.</p>
+		</div>
+		<br>
+	</div>
+{% endblock %}

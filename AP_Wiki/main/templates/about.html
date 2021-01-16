@@ -1,0 +1,38 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+	<div class="container" style="text-align: center">
+		<h2>About</h2>
+		<p>AP Wiki was founded and created by Chris Farber, a sophomore in high school. The inspiration behind AP Wiki came when he entered an app competition and thought of a problem that he faced from time to time, which was asking upper classmen about AP courses he was thinking of taking next year. He found this process to be annoying, both to him and the upper classmen. In addition, there was a pretty small sample of students that he was getting the advice from, and wanted a broader perspective from other students to make the process of deciding which courses to take easier.</p>
+		<br>
+		<img src="{{ url_for('static', filename='classroom.jpg') }}" class="classroom-img">
+		<br>
+		<p>This platform allows students to find courses based on a subject they're interested in. From there, they can gauge the experience of those courses based on the difficulty and value ratings that other students left. Hopefully this will reduce the stress in students making decisions of which AP classes to take, which is a large commitment.</p>
+	</div>
+	<br>
+	<div class="container">
+		<h3>Course Color Coding</h3>
+		<p>If you went through the "Explore Courses" page, you probably saw that the courses are color coded by subject. Below is what each color correlates to (for clarity's sake):</p>
+		<ul class="key">
+			<li>Red: Math</li>
+			<li>Orange: Science</li>
+			<li>Yellow: English</li>
+			<li>Green: Social Studies</li>
+			<li>Blue: Language (other than English, of course)</li>
+			<li>Indigo: Arts</li>
+			<li>Purple: Computer Science</li>
+		</ul>
+	</div>
+	<div class="container">
+		<h2 style="text-align: center">Contact</h2>
+		<p style="text-align: center">If you have any issues, be sure to contact us through anything listed below:</p>
+		<div class="contact">
+			<a href="mailto:cgeraldfarber@icloud.com" target="_blank"><div><i class="far fa-envelope"></i></div></a>
+			<a href="#" target="_blank"><div><i class="fab fa-linkedin"></i></div></a>
+			<a href="#" target="_blank"><div><i class="fab fa-instagram"></i></div></a>
+			<a href="#" target="_blank"><div><i class="fab fa-twitter"></i></div></a>
+		</div>
+	</div>
+	<br>
+	<br>
+{% endblock %}
